@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Period;
 class Covid {
     public static void main(String[] args) {
@@ -13,14 +12,15 @@ class Covid {
         LocalDate birthDay = LocalDate.of(2564-543, 1, 5); //  เกิดวันอังคารที่ 5 มกราคม พ.ศ.2564
 
 
-        //currentDate to get vacine
-        LocalDate currenDate = LocalDate.of(2564-543, 6, 1);
+        // วันก่อนได้รับวัคซีน ก้อน 1 วัน เพื่อตรวจสอบอายุ
+        LocalDate currenDate = LocalDate.of(2564-543, 5, 31);
 
         //calculate age
         Period age = Period.between(birthDay, currenDate);
         System.out.println("year = " + age.getYears() + " month = " + age.getMonths() + " day = " + age.getDays());
 
         //เช็คว่าขาดอยู่อีกกี่วันถึงจะอายุ มากกว่า 6 เดือน แต่ไม่เกิน 2 ปี และยังอยู่ใน เดือนที่เขากำหนด
+        // >>>
 
         if (age.getYears() >= 65) {
             System.out.printf("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564\n");
