@@ -20,6 +20,8 @@ class Covid {
         Period age = Period.between(birthDay, currenDate);
         System.out.println("year = " + age.getYears() + " month = " + age.getMonths() + " day = " + age.getDays());
 
+        //เช็คว่าขาดอยู่อีกกี่วันถึงจะอายุ มากกว่า 6 เดือน แต่ไม่เกิน 2 ปี และยังอยู่ใน เดือนที่เขากำหนด
+
         if (age.getYears() >= 65) {
             System.out.printf("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564\n");
         }else {
