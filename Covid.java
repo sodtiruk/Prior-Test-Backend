@@ -22,15 +22,15 @@ class Covid {
         //เช็คว่าขาดอยู่อีกกี่วันถึงจะอายุ มากกว่า 6 เดือน แต่ไม่เกิน 2 ปี และยังอยู่ใน เดือนที่เขากำหนด
         // >>>
 
-
+        
 
 
         if (age.getYears() >= 65) {
             System.out.printf("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564\n");
         }else if ( (age.getMonths() >= 6 && age.getYears() == 0) || (age.getYears() >= 1 && age.getYears() <= 2)){
-            System.out.printf("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564\n");
+            System.out.printf("you can join");
         }else {
-
+            System.out.println("you cannot join");
         }
 
 
