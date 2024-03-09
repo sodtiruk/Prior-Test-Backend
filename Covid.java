@@ -9,8 +9,8 @@ class Covid {
         
         //birthday
         // LocalDate birthDay = LocalDate.of(2499-543, 3, 10); // เกิดวันเสาร์ที่ 10 มีนาคม พ.ศ.2499
-        LocalDate birthDay = LocalDate.of(2562-543, 7, 1); // เกิดวันจันทร์ที่ 1 กรกฎาคม พ.ศ.2562 
-        // LocalDate birthDay = LocalDate.of(2499-543, 3, 10); //  เกิดวันอังคารที่ 5 มกราคม พ.ศ.2564
+        // LocalDate birthDay = LocalDate.of(2562-543, 7, 1); // เกิดวันจันทร์ที่ 1 กรกฎาคม พ.ศ.2562 
+        LocalDate birthDay = LocalDate.of(2564-543, 1, 5); //  เกิดวันอังคารที่ 5 มกราคม พ.ศ.2564
 
 
         //currentDate to get vacine
