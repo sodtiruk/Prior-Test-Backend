@@ -12,26 +12,23 @@ class Covid {
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        // Scanner scan = new Scanner(System.in);
         // String gender = scan.next();
         
         //birthday
         // LocalDate birthDay = LocalDate.of(2499-543, 3, 10); // เกิดวันเสาร์ที่ 10 มีนาคม พ.ศ.2499 // pass
         // LocalDate birthDay = LocalDate.of(2500-543, 10, 8);
-        LocalDate birthDay = LocalDate.of(2562-543, 7, 1); // เกิดวันจันทร์ที่ 1 กรกฎาคม พ.ศ.2562 // pass 
-        // LocalDate birthDay = LocalDate.of(2564-543, 1, 5); //  เกิดวันอังคารที่ 5 มกราคม พ.ศ.2564 //fix
+        // LocalDate birthDay = LocalDate.of(2562-543, 7, 1); // เกิดวันจันทร์ที่ 1 กรกฎาคม พ.ศ.2562 // pass 
+        LocalDate birthDay = LocalDate.of(2564-543, 1, 5); //  เกิดวันอังคารที่ 5 มกราคม พ.ศ.2564 //fix
         System.out.println("birthday = " + birthDay);
 
-        // วันก่อนได้รับวัคซีน ก้อน 1 วัน เพื่อตรวจสอบอายุ
+        // วันก่อนได้รับวัคซีน ก้อน 1 วัน เพื่อตรวจสอบอายุ // 31 พฤษภาคม พ.ศ.2564
         LocalDate currenDate = LocalDate.of(2564-543, 5, 31);
 
-        //calculate age
+        //คำนวนอายุ ระหว่างวันเกิด กับ ก่อนฉีดวัคซีนหนึ่งวัน
         Period age = Period.between(birthDay, currenDate);
-        System.out.println("อายุ year = " + age.getYears() + " month = " + age.getMonths() + " day = " + age.getDays());
+        // System.out.println("อายุ year = " + age.getYears() + " month = " + age.getMonths() + " day = " + age.getDays());
             
-       
-
-
         if (age.getYears() >= 65) { // กรณีอายุ มากกว่า 65 สามารถเข้ารับวัคซีนได้เลย
             System.out.println("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564");
         }else if ( (age.getMonths() >= 6 && age.getYears() == 0) || (age.getYears() >= 1 && age.getYears() <= 2)){
@@ -41,41 +38,40 @@ class Covid {
             LocalDate numberOfDaysIn2Year = birthDay.plusYears(2);
 
             // อีกกี่วันจะ 2 ปี
-            Period Howmany2year = Period.between(currenDate, numberOfDaysIn2Year);
-            System.out.println("อีกกี่วัน 2 ปี " + Howmany2year.getYears() + "ปี " + Howmany2year.getMonths() + "เดือน " + Howmany2year.getDays() + "วัน");
+            Period howMany2Year = Period.between(currenDate, numberOfDaysIn2Year);
+            System.out.println("อีกกี่วัน 2 ปี " + howMany2Year.getYears() + "ปี " + howMany2Year.getMonths() + "เดือน " + howMany2Year.getDays() + "วัน");
 
-            // กรณี 
-            if (Howmany2year.getYears() == 0){
-                if (Howmany2year.getMonths() == 1 && Howmany2year.getDays() >= 1){
-                    System.out.println("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 1 กรกฎาคม พ.ศ. 2564");
-                }else { // กรณีที่อายุจะเกิน 2 ปี 
-                    System.out.println("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564");
-                }
+            // กรณีทีเหลืออีก 1 เดือนกว่าๆ จะครบ 2 ปี เราไม่อยากให้อายุเกิน 2 ปีไม่งั้น จะไม่เข้าเงือนไขรับวัคซีน เลยต้องถอยช่วงรับวัคซีนมา 1 เดือน
+            if (howMany2Year.getYears() == 0 && howMany2Year.getMonths() == 1 && howMany2Year.getDays() >= 1){
+                System.out.println("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 1 กรกฎาคม พ.ศ. 2564");
             }else {
                 System.out.println("เข้ารับบริการได้ตั้งแต่วันที่ 1 มิถุนายน พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564");
             }
 
-        }else if (age.getYears() == 0 && age.getMonths() < 6){
+        }else if (age.getYears() == 0 && age.getMonths() < 6){ // กรณีที่อายุน้อยกว่า 6 เดือน
 
                 // บวกวันเกิดไป 6 เดือน เพื่อเช็ค ว่าอีกกี่วัน 6 เดือน
                 LocalDate sixMonthsLaterBirthday = birthDay.plusMonths(6);
-                System.out.println(sixMonthsLaterBirthday);
+                // System.out.println(sixMonthsLaterBirthday);
 
                 //จำนวนวัน ที่จะอีก 6 เดือน
                 Period numberOfDaysIn6Month = Period.between(birthDay, sixMonthsLaterBirthday);
 
-                // บวกจำนวนวันที่เหลือกับวันเกิด
+                // บวกจำนวนวันที่เหลือกับวันเกิด เพื่อเอาไปเช็คว่าเกินช่วงเสลารับวัคซีนวันสุดท้ายมั้ย
                 LocalDate result = birthDay.plusDays(numberOfDaysIn6Month.getDays());
                 result = result.plusMonths(numberOfDaysIn6Month.getMonths());
                 result = result.plusYears(numberOfDaysIn6Month.getYears());
                
-                // วันสุดท้ายที่เข้ารับ vacine
-                LocalDate lastDateGetVacine = LocalDate.of(2021, 8, 31);
-                System.out.println("result ==> "+ result); 
+                // System.out.println("result ==> "+ result); 
 
+                // วันที่รับวัคซีนสันสุดท้าย 31 สิงหาคม พ.ศ.2564 บวกไป 1 วันเพราะวันที่ 31 ยังรับวัคซีนได้อยู่
+                LocalDate lastDayGetVacine = LocalDate.of(2564-543, 9, 1);
 
-
-                System.out.printf("เข้ารับบริการได้ตั้งแต่วันที่ %d %s พ.ศ. 2564 - 31 สิงหาคม พ.ศ. 2564\n", result.getDayOfMonth(), monthThai(result.getMonthValue()));
+                if (result.isBefore(lastDayGetVacine))  { // เช็คว่าอายุครบ 6 เดือน ก่อนรับยาวัคซีนวันสุดท้ายหรือมั้ย 
+                    System.out.printf("เข้ารับบริการได้ตั้งแต่วันที่ %d %s พ.ศ. %d - 31 สิงหาคม พ.ศ. 2564\n", result.getDayOfMonth(), monthThai(result.getMonthValue()), result.getYear()+543);
+                }else {
+                    System.out.println("ไม่สามารถเข้ารับบริการได้ เนื่องจากเลยช่วงเวลารับ");
+                }
 
         // กรณีอายุน้อย กว่า 65 แต่ มากกว่า 2 ปี ไม่สามารถเข้ารับวัคซีนได้ 
         }else { 
@@ -84,5 +80,6 @@ class Covid {
         }
 
     }
+
 
 }
